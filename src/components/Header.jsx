@@ -38,31 +38,31 @@ const Header = () => {
           <span className="ml-2 font-semibold text-lg text-blue-600 hidden sm:block">BookTracker</span>
         </div>
         
-        {/* Search Bar - Hidden on mobile */}
+       
         
         
-        {/* Action Buttons */}
+        
         <div className="flex items-center space-x-4">
-          {/* Navigation Link */}
+         
           <a href="/explore" className="hidden sm:flex items-center text-gray-700 hover:text-blue-600 transition">
             <Book size={18} className="mr-1" />
             <span className="text-sm">Explore</span>
           </a>
           
-          {/* Add New Book Button */}
+         
           <button
           onClick={handleButton}
            className="bg-blue-600 text-white px-3 py-1.5 md:px-4 md:py-2 rounded-lg shadow hover:bg-blue-700 transition duration-300 text-sm flex items-center">
             <span>Add Book</span>
           </button>
           
-          {/* User Profile */}
+        
           <div className="relative group">
             <button className="flex items-center justify-center w-8 h-8 md:w-10 md:h-10 rounded-full bg-gray-100 text-gray-600 hover:bg-gray-200 focus:outline-none transition duration-300 border border-gray-200">
               <User size={20} />
             </button>
             
-            {/* Dropdown Menu (hidden by default) */}
+          
             <div className="absolute right-0 mt-2 w-52 bg-white rounded-lg shadow-lg py-2 hidden group-hover:block z-10 border border-gray-100">
               <div className="px-4 py-3 border-b border-gray-100">
                 <p className="text-sm font-medium text-gray-900">Nifli</p>

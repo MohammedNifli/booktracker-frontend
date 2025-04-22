@@ -6,7 +6,7 @@ const Footer = () => {
     <footer className="bg-white border-t border-gray-200 py-6 mt-auto">
       <div className="container mx-auto px-6">
         <div className="flex flex-col md:flex-row justify-between items-center">
-          {/* Logo and Copyright */}
+          
           <div className="flex flex-col items-center md:items-start mb-4 md:mb-0">
             <div className="flex items-center">
               <img src="/booktracker.png" alt="BookTracker Logo" className="h-6 mr-2" />
@@ -15,7 +15,7 @@ const Footer = () => {
             <p className="text-sm text-gray-500 mt-2">© 2025 BookTracker. All rights reserved.</p>
           </div>
           
-          {/* Links */}
+          
           <div className="flex flex-col items-center md:items-end">
             <div className="flex space-x-6 mb-3">
               <a href="#" className="text-gray-500 hover:text-blue-600 transition-colors">

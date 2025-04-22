@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { getBookById,updateBook } from '../api/bookService';
+import {toast} from 'react-toastify'
 
 
 const UpdateModal = ({ bookId, onClose }) => {
@@ -27,15 +28,24 @@ const UpdateModal = ({ bookId, onClose }) => {
     }));
   };
 
-  const handleSubmit = async(e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("bookkkkkkkkkkkkkkkkk",bookData)
-    const response=await updateBook(bookId,bookData)
-
-   
-    console.log('Updated book response:', response);
-    onClose(); // Close the modal after saving
-    window.location.reload()
+  
+    try {
+      const response = await updateBook(bookId, bookData);
+      console.log("Updated book response:", response);
+  
+      if (response.status === 200 || response.status === 201) {
+        toast.success("Book updated successfully!");
+        onClose(); 
+        window.location.reload()
+      } else {
+        toast.error("Failed to update the book.");
+      }
+    } catch (error) {
+      console.error("Error updating book:", error);
+      toast.error("An error occurred while updating the book.");
+    }
   };
 
   return (

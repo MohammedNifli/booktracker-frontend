@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { getBookById, deleteBook } from "../api/bookService";
-import { addNote, getAllNotes,deleteNote } from "../api/noteService";
+import { addNote, getAllNotes, deleteNote } from "../api/noteService";
 import UpdateModal from "../components/updateModal";
+import { ToastContainer, toast } from "react-toastify";
 
 const BookDetails = () => {
   const { id } = useParams();
@@ -32,21 +33,27 @@ const BookDetails = () => {
     fetchBook();
   }, [id]);
 
+  //Add Note
   const handleAddNote = async () => {
     if (!newNote.trim()) return;
 
     const response = await addNote(id, newNote);
-    console.log("response", response);
-   
+    if (response.status == 201) {
+      toast.success("Note added");
+    }
+
     setNewNote("");
     setShowNoteForm(false);
   };
 
+  //Delete Book
   const handleDeleteBook = async () => {
     if (window.confirm("Are you sure you want to delete this book?")) {
       try {
-        await deleteBook(id);
-        alert("Book deleted successfully");
+        const response = await deleteBook(id);
+        if (response.status == 200) {
+          toast.success("Book deleted succesfully");
+        }
         navigate("/books");
       } catch (error) {
         console.error("Error deleting book:", error);
@@ -54,27 +61,32 @@ const BookDetails = () => {
     }
   };
 
+  //Update Book
   const handleUpdateBook = () => {
     setUpdateModdal(true);
   };
 
+  //fetch Note function
   const getNotes = async () => {
     setShowNotes(!showNotes);
     const response = await getAllNotes(id);
+
     setNotes(response?.data?.data);
-    
   };
 
-  const handleDeleteNote=async(noteId)=>{
-    const response=await deleteNote(noteId)
-    console.log("response",response);
+  //Delete a Note
 
-    window.location.reload()
+  const handleDeleteNote = async (noteId) => {
+    const response = await deleteNote(noteId);
+    if (response.status == 200) {
+      toast.success("deleted succefully");
+    }
 
+    setNotes("");
 
-  }
+    // window.location.reload()
+  };
 
-  
   if (!book) {
     return (
       <div className="flex justify-center items-center min-h-screen bg-gray-50">
@@ -87,6 +99,7 @@ const BookDetails = () => {
 
   return (
     <div className="bg-gray-50 min-h-screen py-12">
+      <ToastContainer />
       <div className="max-w-6xl mx-auto px-4">
         {/* Back Button */}
         <button
@@ -354,7 +367,6 @@ const BookDetails = () => {
                     >
                       <p className="text-gray-700">{note.content}</p>
                       <div className="flex items-center justify-between mt-3 text-xs text-gray-500">
-                        
                         <button
                           onClick={() => handleDeleteNote(note.id)} // Make sure to implement handleDeleteNote
                           className="text-red-500 hover:text-red-700 text-sm font-medium flex items-center"

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { X, Upload, Book } from "lucide-react";
-import { addBook } from "../api/bookService"; // this should handle multipart/form-data POST
+import { addBook } from "../api/bookService"; 
+import {toast} from 'react-toastify'
 
 const AddBookModal = ({ isOpen, onClose }) => {
   const [bookData, setBookData] = useState({
@@ -49,6 +50,7 @@ const AddBookModal = ({ isOpen, onClose }) => {
       }
 
       const res = await addBook(formData);
+      if(res.status==201) toast.success("book added succfully")
       console.log("Book added:", res);
       setBookData({
         title: "",
@@ -158,7 +160,7 @@ const AddBookModal = ({ isOpen, onClose }) => {
             />
           </div>
 
-          {/* Description */}
+         
           <div className="mb-4">
             <label
               htmlFor="description"
@@ -177,7 +179,7 @@ const AddBookModal = ({ isOpen, onClose }) => {
             />
           </div>
 
-          {/* Status Dropdown */}
+          
           <div className="mb-6">
             <label
               htmlFor="status"
@@ -199,7 +201,7 @@ const AddBookModal = ({ isOpen, onClose }) => {
             </select>
           </div>
 
-          {/* Actions */}
+          
           <div className="flex justify-end space-x-3">
             <button
               type="button"
