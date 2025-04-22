@@ -33,6 +33,10 @@ This is the **frontend** of the Book Tracker app, built with **React**. It allow
 ```bash
 git clone https://github.com/MohammedNifli/booktracker-frontend.git
 cd booktracker-frontend
+
+or
+cd booktracker-frontend && cd booktracker
+
 ```
 2. Install Dependencies
 npm install
