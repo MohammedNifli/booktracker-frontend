@@ -91,7 +91,7 @@ const BookDetails = () => {
     return (
       <div className="flex justify-center items-center min-h-screen bg-gray-50">
         <div className="animate-spin rounded-full h-16 w-16 border-t-4 border-b-4 border-indigo-600">
-          Loading....
+        
         </div>
       </div>
     );
@@ -101,7 +101,7 @@ const BookDetails = () => {
     <div className="bg-gray-50 min-h-screen py-12">
       <ToastContainer />
       <div className="max-w-6xl mx-auto px-4">
-        {/* Back Button */}
+        
         <button
           onClick={() => navigate(-1)}
           className="mb-8 flex items-center text-indigo-600 hover:text-indigo-800 font-medium"
